@@ -6,14 +6,14 @@ body {
   background: #0e0617;
   color: #e2d9f3;
   font-family: 'VT323', monospace;
-  font-size: 18px;
+  font-size: 20px;
   min-height: 100vh;
 }
 
 .container {
-  max-width: 820px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 20px 18px;
+  padding: 28px 32px;
 }
 
 .nav {
@@ -21,29 +21,29 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1.5px solid #6d28d9;
-  padding-bottom: 10px;
-  margin-bottom: 22px;
+  padding-bottom: 12px;
+  margin-bottom: 28px;
 }
 
 .nav-logo {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.62rem;
+  font-size: 0.85rem;
   color: #f472b6;
   letter-spacing: 1px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.nav-links { display: flex; gap: 8px; }
+.nav-links { display: flex; gap: 10px; }
 
 .nav-btn {
   background: transparent;
   border: 1.5px solid #6d28d9;
   color: #c4b5fd;
   font-family: 'VT323', monospace;
-  font-size: 1rem;
-  padding: 4px 12px;
+  font-size: 1.2rem;
+  padding: 6px 16px;
   cursor: pointer;
   letter-spacing: 1px;
   transition: all 0.1s;
@@ -58,11 +58,11 @@ body {
   box-shadow: none;
 }
 
-.hero { text-align: center; margin-bottom: 20px; }
+.hero { text-align: center; margin-bottom: 28px; }
 
 .hero-cat {
   display: block;
-  margin: 0 auto 10px;
+  margin: 0 auto 14px;
   filter: drop-shadow(0 0 8px #f472b6);
   animation: bob 2.5s ease-in-out infinite;
 }
@@ -74,20 +74,20 @@ body {
 
 .hero h1 {
   font-family: 'Press Start 2P', monospace;
-  font-size: 1rem;
+  font-size: 1.8rem;
   color: #f472b6;
   text-shadow: 2px 2px 0 #6d28d9;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   line-height: 1.6;
 }
 
-.hero p { color: #a78bfa; font-size: 1rem; letter-spacing: 2px; }
+.hero p { color: #a78bfa; font-size: 1.3rem; letter-spacing: 2px; }
 
 .card {
   background: #150a28;
   border: 1.5px solid #6d28d9;
-  padding: 18px;
-  margin-bottom: 14px;
+  padding: 28px;
+  margin-bottom: 20px;
   box-shadow: 3px 3px 0 #f472b6;
   position: relative;
 }
@@ -100,28 +100,28 @@ body {
   background: #150a28;
   color: #f472b6;
   padding: 0 6px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   letter-spacing: 1px;
 }
 
 .form-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .form-group {
   flex: 1;
-  min-width: 130px;
+  min-width: 160px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .form-group label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.42rem;
+  font-size: 0.5rem;
   color: #f472b6;
   letter-spacing: 1px;
 }
@@ -130,9 +130,9 @@ input[type="text"] {
   background: #0e0617;
   border: 1.5px solid #6d28d9;
   color: #e2d9f3;
-  padding: 8px 10px;
+  padding: 12px 14px;
   font-family: 'VT323', monospace;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   outline: none;
   width: 100%;
   border-radius: 0;
@@ -146,9 +146,9 @@ select {
   background: #0e0617;
   border: 1.5px solid #6d28d9;
   color: #e2d9f3;
-  padding: 8px 10px;
+  padding: 12px 14px;
   font-family: 'VT323', monospace;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   outline: none;
   width: 100%;
   border-radius: 0;
@@ -160,8 +160,8 @@ select:focus { border-color: #f472b6; }
 
 button {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.52rem;
-  padding: 10px 16px;
+  font-size: 0.6rem;
+  padding: 12px 22px;
   cursor: pointer;
   border: none;
   letter-spacing: 1px;
@@ -200,44 +200,44 @@ button:disabled {
 
 .btn-secondary:hover { background: #f472b611; }
 
-.btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 16px;
   text-align: center;
 }
 
-.feature-item { padding: 8px 4px; }
-.feature-icon { display: block; margin: 0 auto 6px; }
+.feature-item { padding: 12px 8px; }
+.feature-icon { display: block; margin: 0 auto 8px; }
 .feature-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.42rem;
+  font-size: 0.5rem;
   color: #f472b6;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
-.feature-desc { color: #a78bfa; font-size: 0.9rem; }
+.feature-desc { color: #a78bfa; font-size: 1.1rem; }
 
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
 .stat-card {
   background: #150a28;
   border: 1.5px solid #6d28d9;
-  padding: 12px 8px;
+  padding: 18px 12px;
   text-align: center;
   box-shadow: 2px 2px 0 #f472b6;
 }
 
 .stat-card .value {
   font-family: 'Press Start 2P', monospace;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #f472b6;
   display: block;
 }
@@ -248,9 +248,9 @@ button:disabled {
 
 .stat-card .label {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.38rem;
+  font-size: 0.42rem;
   color: #7c3aed;
-  margin-top: 4px;
+  margin-top: 6px;
   display: block;
   letter-spacing: 1px;
 }
@@ -258,13 +258,13 @@ button:disabled {
 .sentence-dots {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .sentence-dot {
-  width: 24px;
-  height: 6px;
+  width: 32px;
+  height: 8px;
   border: 1.5px solid #6d28d9;
   transition: all 0.3s;
 }
@@ -276,19 +276,19 @@ button:disabled {
 .sentence-label {
   text-align: center;
   color: #a78bfa;
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
   letter-spacing: 2px;
 }
 
 .paragraph-box {
   background: #0e0617;
   border: 1.5px solid #6d28d9;
-  padding: 16px;
-  font-size: 1.25rem;
-  line-height: 2;
-  margin-bottom: 10px;
-  min-height: 64px;
+  padding: 24px;
+  font-size: 1.5rem;
+  line-height: 2.2;
+  margin-bottom: 12px;
+  min-height: 80px;
   letter-spacing: 0.04em;
 }
 
@@ -303,9 +303,9 @@ textarea {
   background: #0e0617;
   border: 1.5px solid #6d28d9;
   color: #e2d9f3;
-  padding: 10px;
+  padding: 14px;
   font-family: 'VT323', monospace;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   resize: none;
   outline: none;
   border-radius: 0;
@@ -314,7 +314,7 @@ textarea {
 
 textarea:focus { border-color: #f472b6; }
 
-.typing-info { color: #7c3aed; font-size: 0.85rem; letter-spacing: 1px; margin-top: 6px; }
+.typing-info { color: #7c3aed; font-size: 1rem; letter-spacing: 1px; margin-top: 8px; }
 
 .bonus-toast {
   position: fixed;
@@ -323,8 +323,8 @@ textarea:focus { border-color: #f472b6; }
   background: #4ade80;
   color: #0e0617;
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
-  padding: 8px 14px;
+  font-size: 0.6rem;
+  padding: 10px 16px;
   box-shadow: 2px 2px 0 #6d28d9;
   z-index: 999;
   animation: toast-anim 1.8s forwards;
@@ -340,97 +340,97 @@ textarea:focus { border-color: #f472b6; }
 .result-card {
   background: #150a28;
   border: 1.5px solid #f472b6;
-  padding: 30px 20px;
+  padding: 40px 32px;
   text-align: center;
   box-shadow: 5px 5px 0 #6d28d9;
 }
 
 .result-cat {
   display: block;
-  margin: 0 auto 10px;
+  margin: 0 auto 14px;
   animation: bob 2s infinite;
 }
 
 .result-card h2 {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: #f472b6;
   text-shadow: 2px 2px 0 #6d28d9;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.result-card p { color: #a78bfa; margin-bottom: 18px; font-size: 0.95rem; letter-spacing: 1px; }
+.result-card p { color: #a78bfa; margin-bottom: 22px; font-size: 1.1rem; letter-spacing: 1px; }
 
 .result-stats {
   display: flex;
   justify-content: center;
-  gap: 28px;
-  margin-bottom: 20px;
+  gap: 40px;
+  margin-bottom: 28px;
   flex-wrap: wrap;
 }
 
 .result-stat .big {
   font-family: 'Press Start 2P', monospace;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: #fff;
   display: block;
   text-shadow: 2px 2px 0 #f472b6;
 }
 
 .result-stat .small {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #7c3aed;
   letter-spacing: 2px;
   display: block;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
-.leaderboard-header { text-align: center; margin-bottom: 18px; }
+.leaderboard-header { text-align: center; margin-bottom: 22px; }
 
 .leaderboard-header h1 {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: #f472b6;
   text-shadow: 2px 2px 0 #6d28d9;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-.leaderboard-header p { color: #a78bfa; letter-spacing: 2px; font-size: 0.95rem; }
+.leaderboard-header p { color: #a78bfa; letter-spacing: 2px; font-size: 1.1rem; }
 
 table { width: 100%; border-collapse: collapse; }
 
 th {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.38rem;
+  font-size: 0.45rem;
   color: #f472b6;
-  padding: 10px 12px;
+  padding: 12px 16px;
   border-bottom: 1.5px solid #6d28d9;
   text-align: left;
   letter-spacing: 1px;
 }
 
 td {
-  padding: 10px 12px;
+  padding: 14px 16px;
   border-bottom: 1px solid #1e0d3a;
   color: #e2d9f3;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
 }
 
 tr:hover td { background: #150a28; }
 
-.rank-1 { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #fbbf24; }
-.rank-2 { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #d1d5db; }
-.rank-3 { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #b45309; }
-.rank-other { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #7c3aed; }
+.rank-1 { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #fbbf24; }
+.rank-2 { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #d1d5db; }
+.rank-3 { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #b45309; }
+.rank-other { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #7c3aed; }
 
-.wpm-cell { font-family: 'Press Start 2P', monospace; font-size: 0.62rem; color: #f472b6; }
+.wpm-cell { font-family: 'Press Start 2P', monospace; font-size: 0.68rem; color: #f472b6; }
 
-.badge { display: inline-block; padding: 2px 8px; font-size: 0.85rem; letter-spacing: 1px; border: 1px solid; }
+.badge { display: inline-block; padding: 3px 10px; font-size: 1rem; letter-spacing: 1px; border: 1px solid; }
 .badge-easy   { border-color: #4ade80; color: #4ade80; }
 .badge-medium { border-color: #f472b6; color: #f472b6; }
 .badge-hard   { border-color: #f87171; color: #f87171; }
 
-.empty-state { text-align: center; padding: 40px; color: #3d2060; }
-.empty-state p { margin-top: 8px; font-size: 0.95rem; }
+.empty-state { text-align: center; padding: 50px; color: #3d2060; }
+.empty-state p { margin-top: 8px; font-size: 1.1rem; }
 
-.loading-cat { text-align: center; padding: 30px; color: #7c3aed; font-size: 1rem; letter-spacing: 2px; }
+.loading-cat { text-align: center; padding: 36px; color: #7c3aed; font-size: 1.2rem; letter-spacing: 2px; }
