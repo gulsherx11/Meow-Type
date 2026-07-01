@@ -33,6 +33,7 @@ npm start
 Create `backend/.env`:
 
 DATABASE_URL=postgresql://postgres:password@localhost:5432/typingdb
+
 GROQ_API_KEY=your_groq_api_key
 
 ## Features
