@@ -3,9 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 from groq import Groq
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
 import os
 import random
 
@@ -15,10 +12,7 @@ from schemas import ScoreCreate, ScoreOut
 
 Base.metadata.create_all(bind=engine)
 
-limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,6 +20,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+try:
+    from slowapi import Limiter, _rate_limit_exceeded_handler
+    from slowapi.util import get_remote_address
+    from slowapi.errors import RateLimitExceeded
+    limiter = Limiter(key_func=get_remote_address)
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+    RATE_LIMIT = True
+except ImportError:
+    RATE_LIMIT = False
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -124,7 +129,6 @@ def health():
     return {"status": "healthy"}
 
 @app.get("/paragraphs")
-@limiter.limit("20/minute")
 async def get_paragraph(request: Request, difficulty: str = "medium"):
     try:
         response = client.chat.completions.create(
