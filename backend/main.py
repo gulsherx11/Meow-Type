@@ -134,6 +134,7 @@ async def get_paragraph(request: Request, difficulty: str = "medium"):
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
             max_tokens=100,
+            timeout=5,
             messages=[{"role": "user", "content": DIFFICULTY_PROMPTS.get(difficulty, DIFFICULTY_PROMPTS["medium"])}]
         )
         text = response.choices[0].message.content.strip().strip('"').strip("'")
