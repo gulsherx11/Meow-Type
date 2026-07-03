@@ -28,9 +28,11 @@ export default function Test() {
   const finishedRef = useRef(false);
   const textareaRef = useRef(null);
   const sentenceRef = useRef('');
+  const startTimeRef = useRef(null);
 
   const fetchNextSentence = async () => {
     setLoading(true);
+    startTimeRef.current = Date.now();
     const res = await axios.get(`${API}/paragraphs?difficulty=${difficulty}`);
     sentenceRef.current = res.data.text;
     setCurrentSentence(res.data.text);
@@ -53,16 +55,21 @@ export default function Test() {
     return () => clearInterval(intervalRef.current);
   }, [started]);
 
-  const calcStats = (typed, elapsed) => {
+  const calcStats = (typed) => {
     const sentence = sentenceRef.current;
+    const elapsed = startTimeRef.current
+      ? (Date.now() - startTimeRef.current) / 1000
+      : 1;
     const words = typed.trim().split(/\s+/).filter(Boolean).length;
-    const mins = (elapsed || 1) / 60;
+    const mins = elapsed / 60;
     const currentWpm = Math.round(words / mins);
     let correct = 0;
     for (let i = 0; i < typed.length; i++) {
       if (typed[i] === sentence[i]) correct++;
     }
-    const currentAccuracy = typed.length > 0 ? Math.round((correct / typed.length) * 100) : 100;
+    const currentAccuracy = typed.length > 0
+      ? Math.round((correct / typed.length) * 100)
+      : 100;
     return { currentWpm, currentAccuracy };
   };
 
@@ -73,9 +80,11 @@ export default function Test() {
     setFinished(true);
     const finalStats = stats || allStats;
     const avgWpm = finalStats.length > 0
-      ? Math.round(finalStats.reduce((a, b) => a + b.wpm, 0) / finalStats.length) : wpm;
+      ? Math.round(finalStats.reduce((a, b) => a + b.wpm, 0) / finalStats.length)
+      : wpm;
     const avgAcc = finalStats.length > 0
-      ? Math.round(finalStats.reduce((a, b) => a + b.acc, 0) / finalStats.length) : accuracy;
+      ? Math.round(finalStats.reduce((a, b) => a + b.acc, 0) / finalStats.length)
+      : accuracy;
     setWpm(avgWpm);
     setAccuracy(avgAcc);
     axios.post(`${API}/scores`, { nickname, wpm: avgWpm, accuracy: avgAcc, difficulty })
@@ -85,10 +94,12 @@ export default function Test() {
   const handleInput = (e) => {
     const val = e.target.value;
     if (val.length < input.length) return;
-    if (!started) setStarted(true);
+    if (!started) {
+      setStarted(true);
+      startTimeRef.current = Date.now();
+    }
     setInput(val);
-    const elapsed = totalTime - timeLeft;
-    const { currentWpm, currentAccuracy } = calcStats(val, elapsed || 1);
+    const { currentWpm, currentAccuracy } = calcStats(val);
     setWpm(currentWpm);
     setAccuracy(currentAccuracy);
     if (val.length >= sentenceRef.current.length) {
