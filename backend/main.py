@@ -152,4 +152,7 @@ def save_score(score: ScoreCreate, db: Session = Depends(get_db)):
 
 @app.get("/leaderboard", response_model=List[ScoreOut])
 def get_leaderboard(db: Session = Depends(get_db)):
-    return db.query(Score).order_by(Score.wpm.desc()).limit(10).all()
+    return db.query(Score)\
+        .filter(Score.sentences_completed >= 5)\
+        .order_by(Score.wpm.desc())\
+        .limit(10).all()

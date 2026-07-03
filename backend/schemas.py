@@ -6,6 +6,7 @@ class ScoreCreate(BaseModel):
     wpm: float
     accuracy: float
     difficulty: str = "medium"
+    sentences_completed: int = 0
 
 class ScoreOut(BaseModel):
     id: int
@@ -13,6 +14,7 @@ class ScoreOut(BaseModel):
     wpm: float
     accuracy: float
     difficulty: str
+    sentences_completed: int
     created_at: datetime
 
     class Config:

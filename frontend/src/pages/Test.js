@@ -91,7 +91,7 @@ export default function Test() {
       : accuracyRef.current;
     setWpm(avgWpm);
     setAccuracy(avgAcc);
-    axios.post(`${API}/scores`, { nickname, wpm: avgWpm, accuracy: avgAcc, difficulty })
+    axios.post(`${API}/scores`, { nickname, wpm: avgWpm, accuracy: avgAcc, difficulty, sentences_completed: finalStats.length })
       .then(() => setSaved(true));
   };
 
