@@ -30,6 +30,9 @@ export default function Test() {
   const sentenceRef = useRef('');
   const startTimeRef = useRef(null);
   const sentenceStartedRef = useRef(false);
+  const allStatsRef = useRef([]);
+  const wpmRef = useRef(0);
+  const accuracyRef = useRef(100);
 
   const fetchNextSentence = async () => {
     setLoading(true);
@@ -79,13 +82,13 @@ export default function Test() {
     finishedRef.current = true;
     clearInterval(intervalRef.current);
     setFinished(true);
-    const finalStats = stats || allStats;
+    const finalStats = stats || allStatsRef.current;
     const avgWpm = finalStats.length > 0
       ? Math.round(finalStats.reduce((a, b) => a + b.wpm, 0) / finalStats.length)
-      : wpm;
+      : wpmRef.current;
     const avgAcc = finalStats.length > 0
       ? Math.round(finalStats.reduce((a, b) => a + b.acc, 0) / finalStats.length)
-      : accuracy;
+      : accuracyRef.current;
     setWpm(avgWpm);
     setAccuracy(avgAcc);
     axios.post(`${API}/scores`, { nickname, wpm: avgWpm, accuracy: avgAcc, difficulty })
@@ -100,12 +103,8 @@ export default function Test() {
     const val = e.target.value;
     if (val.length < input.length) return;
 
-    // Start global timer on first keypress ever
-    if (!started) {
-      setStarted(true);
-    }
+    if (!started) setStarted(true);
 
-    // Start per-sentence timer on first keypress of each sentence
     if (!sentenceStartedRef.current) {
       sentenceStartedRef.current = true;
       startTimeRef.current = Date.now();
@@ -115,11 +114,14 @@ export default function Test() {
     const { currentWpm, currentAccuracy } = calcStats(val);
     setWpm(currentWpm);
     setAccuracy(currentAccuracy);
+    wpmRef.current = currentWpm;
+    accuracyRef.current = currentAccuracy;
 
     if (val.length >= sentenceRef.current.length) {
       const sentenceStat = { wpm: currentWpm, acc: currentAccuracy };
       const newStats = [...allStats, sentenceStat];
       setAllStats(newStats);
+      allStatsRef.current = newStats;
       if (currentIndex + 1 >= TOTAL_SENTENCES) {
         triggerFinish(newStats);
       } else {
