@@ -29,9 +29,11 @@ export default function Test() {
   const textareaRef = useRef(null);
   const sentenceRef = useRef('');
   const startTimeRef = useRef(null);
+  const sentenceStartedRef = useRef(false);
 
   const fetchNextSentence = async () => {
     setLoading(true);
+    sentenceStartedRef.current = false;
     const res = await axios.get(`${API}/paragraphs?difficulty=${difficulty}`);
     sentenceRef.current = res.data.text;
     setCurrentSentence(res.data.text);
@@ -60,7 +62,7 @@ export default function Test() {
       ? (Date.now() - startTimeRef.current) / 1000
       : 1;
     const words = typed.trim().split(/\s+/).filter(Boolean).length;
-    const mins = elapsed / 60;
+    const mins = Math.max(elapsed, 1) / 60;
     const currentWpm = Math.round(words / mins);
     let correct = 0;
     for (let i = 0; i < typed.length; i++) {
@@ -91,21 +93,29 @@ export default function Test() {
   };
 
   const playAgain = () => {
-    finishedRef.current = false;
     navigate('/test', { state: { nickname, difficulty, timer: totalTime } });
   };
 
   const handleInput = (e) => {
     const val = e.target.value;
     if (val.length < input.length) return;
+
+    // Start global timer on first keypress ever
     if (!started) {
       setStarted(true);
+    }
+
+    // Start per-sentence timer on first keypress of each sentence
+    if (!sentenceStartedRef.current) {
+      sentenceStartedRef.current = true;
       startTimeRef.current = Date.now();
     }
+
     setInput(val);
     const { currentWpm, currentAccuracy } = calcStats(val);
     setWpm(currentWpm);
     setAccuracy(currentAccuracy);
+
     if (val.length >= sentenceRef.current.length) {
       const sentenceStat = { wpm: currentWpm, acc: currentAccuracy };
       const newStats = [...allStats, sentenceStat];
