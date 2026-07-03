@@ -3,25 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { CatLogo, CatHero } from '../CatSVG';
 
 export default function Home() {
-  const [nickname, setNickname] = useState('');
+  const [nickname, setNickname] = useState(localStorage.getItem('meow_nickname') || '');
   const [difficulty, setDifficulty] = useState('medium');
   const [timer, setTimer] = useState(60);
   const navigate = useNavigate();
 
   const start = () => {
     if (!nickname.trim()) return alert('Enter a name, nya~!');
+    localStorage.setItem('meow_nickname', nickname);
     navigate('/test', { state: { nickname, difficulty, timer } });
   };
-
-  const [nickname, setNickname] = useState(localStorage.getItem('meow_nickname') || '');
-
-  const start = () => {
-  if (!nickname.trim()) return alert('Enter a name, nya~!');
-  localStorage.setItem('meow_nickname', nickname);
-  navigate('/test', { state: { nickname, difficulty, timer } });
-  };
-
-  
 
   return (
     <div className="container">
