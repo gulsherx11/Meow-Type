@@ -13,6 +13,16 @@ export default function Home() {
     navigate('/test', { state: { nickname, difficulty, timer } });
   };
 
+  const [nickname, setNickname] = useState(localStorage.getItem('meow_nickname') || '');
+
+  const start = () => {
+  if (!nickname.trim()) return alert('Enter a name, nya~!');
+  localStorage.setItem('meow_nickname', nickname);
+  navigate('/test', { state: { nickname, difficulty, timer } });
+  };
+
+  
+
   return (
     <div className="container">
       <nav className="nav">

@@ -32,7 +32,6 @@ export default function Test() {
 
   const fetchNextSentence = async () => {
     setLoading(true);
-    startTimeRef.current = Date.now();
     const res = await axios.get(`${API}/paragraphs?difficulty=${difficulty}`);
     sentenceRef.current = res.data.text;
     setCurrentSentence(res.data.text);
@@ -89,6 +88,11 @@ export default function Test() {
     setAccuracy(avgAcc);
     axios.post(`${API}/scores`, { nickname, wpm: avgWpm, accuracy: avgAcc, difficulty })
       .then(() => setSaved(true));
+  };
+
+  const playAgain = () => {
+    finishedRef.current = false;
+    navigate('/test', { state: { nickname, difficulty, timer: totalTime } });
   };
 
   const handleInput = (e) => {
@@ -186,7 +190,8 @@ export default function Test() {
           </div>
           <div className="btn-group" style={{ justifyContent: 'center' }}>
             <button onClick={() => navigate('/leaderboard')}>SCORES</button>
-            <button className="btn-secondary" onClick={() => navigate('/')}>PLAY AGAIN</button>
+            <button className="btn-secondary" onClick={playAgain}>PLAY AGAIN</button>
+            <button className="btn-secondary" onClick={() => navigate('/')}>HOME</button>
           </div>
         </div>
       ) : (
