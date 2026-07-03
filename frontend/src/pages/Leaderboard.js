@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CatLogo } from '../CatSVG';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_API_URL || 'https://meow-type-production.up.railway.app';
 
 export default function Leaderboard() {
   const [scores, setScores] = useState([]);

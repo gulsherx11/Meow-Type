@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CatLogo, CatResult } from '../CatSVG';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_API_URL || 'https://meow-type-production.up.railway.app';
 const TOTAL_SENTENCES = 5;
 
 export default function Test() {
